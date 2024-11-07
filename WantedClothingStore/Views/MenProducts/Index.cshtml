@@ -1,0 +1,60 @@
+﻿@model IEnumerable<WantedClothingStore.Models.MenProduct>
+
+<h2>Men's Clothing</h2>
+
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top" src="@product.ImageUrl" alt="@product.Name" />
+                <div class="card-body">
+                    <h5 class="card-title">@product.Name</h5>
+                    <p class="card-text">@product.Description</p>
+                    <p class="card-text">Price: $@product.Price</p>
+                    <p class="card-text">Size: @product.Size</p>
+                    <a href="@Url.Action("AddToCart", "Cart", new { productId = product.Id })" class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+<div>
+    <label for="sizeFilter">Filter by Size:</label>
+    <select id="sizeFilter" onchange="filterBySize()">
+        <option value="">All Sizes</option>
+        <option value="XS">XS</option>
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+    </select>
+</div>
+
+<script>
+    var baseUrl = "@Url.Action("Index", "Men")";
+    function filterBySize() {
+        var selectedSize = document.getElementById('sizeFilter').value;
+        window.location.href = baseUrl + "?size=" + selectedSize;
+    }
+</script>
+
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top" src="@product.ImageUrl" alt="@product.Name" />
+                <div class="card-body">
+                    <h5 class="card-title">@product.Name</h5>
+                    <p class="card-text">@product.Description</p>
+                    <p class="card-text">Price: $@product.Price</p>
+                    <p class="card-text">Size: @product.Size</p>
+                    <a href="@Url.Action("AddToCart", "Cart", new { productId = product.Id })" class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
